@@ -1,0 +1,111 @@
+html, body {
+	min-height: 100%;
+}
+
+body {
+	font: 14px Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#game {
+	display: inline-block;
+	margin: 40px auto 40px auto;
+}
+
+.hidden {
+	display: none;
+}
+
+.pad-top {
+	margin-top: 30px;
+}
+
+.pad-bottom {
+	margin-bottom: 30px;
+}
+
+.mine {
+	font-size: 1.3em;
+	color: black !important;
+}
+
+.block {
+	width: 30px;
+	height: 30px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	float: left;
+	padding-top: 5px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #8C8C8C;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	margin: 0 0 2px 2px;
+	box-shadow:-1px 0 #fff,
+                0 -1px #fff,
+                1px 0 #333,
+                0 1px #333;
+}
+
+.block.mine {
+	padding-top: 0px !important;
+}
+
+.block[data-flagged='true'],
+.block[data-maybe='true'] {
+	color: #000 !important;
+}
+
+.block[data-mines='0'] {
+	color: #ccc;
+}
+
+.block[data-mines='1'] {
+	color: #229EFF;
+}
+
+.block[data-mines='2'] {
+	color: #7AFF22;
+}
+
+.block[data-mines='3'] {
+	color: #EE3E3E;
+}
+
+.block[data-x='0'] {
+	clear: both;
+}
+
+.block[data-x='0']:first-child {
+	clear: none;
+}
+
+.block.clickable {
+	background-color: #d6d6d6;
+	background-image: -webkit-gradient(linear, left top, right bottom, from(rgb(214, 214, 214)), to(rgb(193, 193, 193)));
+	background-image: -webkit-linear-gradient(left top, rgb(214, 214, 214), rgb(193, 193, 193));
+	background-image: -moz-linear-gradient(left top, rgb(214, 214, 214), rgb(193, 193, 193));
+	background-image: -o-linear-gradient(left top, rgb(214, 214, 214), rgb(193, 193, 193));
+	background-image: -ms-linear-gradient(left top, rgb(214, 214, 214), rgb(193, 193, 193));
+	background-image: linear-gradient(left top, rgb(214, 214, 214), rgb(193, 193, 193));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#d6d6d6', EndColorStr='#c1c1c1');
+}
+
+.block.clickable:hover {
+	cursor: pointer;
+	background-color: #b6e6ff;
+	background-image: -webkit-gradient(linear, left top, right bottom, from(rgb(182, 230, 255)), to(rgb(104, 195, 255)));
+	background-image: -webkit-linear-gradient(left top, rgb(182, 230, 255), rgb(104, 195, 255));
+	background-image: -moz-linear-gradient(left top, rgb(182, 230, 255), rgb(104, 195, 255));
+	background-image: -o-linear-gradient(left top, rgb(182, 230, 255), rgb(104, 195, 255));
+	background-image: -ms-linear-gradient(left top, rgb(182, 230, 255), rgb(104, 195, 255));
+	background-image: linear-gradient(left top, rgb(182, 230, 255), rgb(104, 195, 255));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#b6e6ff', EndColorStr='#68c3ff');
+}
+
+.clicked, .clicked:hover, .click:active {
+	cursor: default !important;
+}
+
+.fa-cog {
+	margin-top: 5px;
+}

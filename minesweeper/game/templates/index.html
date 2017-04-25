@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Minesweeper!</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>Are you ready to sweep mines?!?!</h1>
+        <p class="pad-top options new"><a class="btn btn-lg btn-success" href="/new/" role="button"><i class="fa fa-rocket"></i> New Game</a> <a class="btn btn-lg btn-info resume hidden" href="#" role="button"><i class="fa fa-thumbs-o-up"></i> Resume Game</a></p>
+      </div>
+      <div class="footer">
+        <p>&copy; 2017 Hao Chen</p>
+      </div>
+    </div>
+</body>
+</html>

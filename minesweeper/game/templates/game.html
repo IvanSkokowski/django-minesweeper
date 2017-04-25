@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minesweeper!</title>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+      {{csrf_token}}
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="/"><i class="fa fa-home"></i>  Home</a></li>
+        </ul>
+        <h3 class="text-muted">Minesweeper!</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Game: {{ game.id }}</h1>
+        {% if game.completed %}
+        {% if game.won %}
+        <h3><i class="fa fa-smile-o"></i> This game was won!</h3>
+        {% else %}
+        <h3><i class="fa fa-frown-o"></i> This game was lost, sad face.</h3>
+        {% endif %}
+        <p class="pad-top options new"><a class="btn btn-lg btn-success" href="/new/" role="button"><i class="fa fa-rocket"></i> New Game</a></p>
+        {% else %}
+        <h4>Flags: <span id="flags">0</span></h4>
+        <div id="game">
+          <p>Preparing game...</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2017 Hao Chen</p>
+      </div>
+    </div>
+    {% load staticfiles %}
+    <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/minesweeper.js' %}"></script>
+    <script type="text/javascript">
+    ( function ( document, minesweeper ) {
+      {% if not game.completed %}
+      var game    = {{ game.id }},
+          max_x   = {{ game.max_x }},
+          max_y   = {{ game.max_y }},
+          moves   = [],
+          $target = $( "#game" )[0];
+      function isTrue ( arg ) {
+        return arg.toLowerCase() === "true";
+      }
+      {% for move in moves %}
+      moves.push( {x: {{move.x}}, y: {{move.y}}, mines: {{move.mines}}, click: isTrue('{{move.click}}'), flag: isTrue('{{move.flag}}'), maybe: isTrue('{{move.maybe}}')} );
+      {% endfor %}
+      window.game = minesweeper( $target, game, max_x, max_y, "game", moves ).render();
+      $.cookie( "game", game, {expires: 7, path: "/"} );
+      {% else %}
+      $.removeCookie( "game", {path: "/"} );
+      {% endif %}
+    } )( document, minesweeper )
+    </script>
+  </body>
+</html>
